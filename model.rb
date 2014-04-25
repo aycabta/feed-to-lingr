@@ -42,7 +42,7 @@ DataMapper.finalize
 def database_upgrade!
   Room.auto_upgrade!
   Feed.auto_upgrade!
-  #Feeding.auto_upgrade!
+  Connections.auto_upgrade!
   Entry.auto_upgrade!
 end
 
