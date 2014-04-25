@@ -18,7 +18,7 @@ table.table.table-bordered.table-condensed.rooms
   tbody
     - for x in @connections
       tr
-        td.room_id = x.room.id
+        td.room_id = x.room.room_id
         td.name = x.feed.name
         td.url = x.feed.url
 
