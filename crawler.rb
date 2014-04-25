@@ -29,7 +29,7 @@ feeds.each do |feed|
       text = "#{title}\n#{url}"
       request_url = "http://lingr.com/api/room/say?room=#{URI.encode(room.room_id)}&bot=#{URI.encode(ENV["BOT_ID"])}&text=#{URI.encode(text)}&bot_verifier=#{URI.encode(Digest::SHA1.hexdigest(ENV["BOT_ID"] + ENV["BOT_SECRET"]))}"
       uri = URI.parse(request_url)
-      puts Net::HTTP.get_response(uri)
+      response = Net::HTTP.get_response(uri)
     end
   end
 end
