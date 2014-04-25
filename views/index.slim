@@ -1,0 +1,13 @@
+table.table.table-bordered.table-condensed.room_notifications
+  thead
+    tr
+      th RoomID
+      th FeedName
+      th URL
+  tbody
+    - for x in @connections
+      tr
+        td.room_id = x.room.id
+        td.name = x.feed.name
+        td.url = x.feed.url
+

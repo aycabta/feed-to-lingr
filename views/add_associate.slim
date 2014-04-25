@@ -1,0 +1,24 @@
+form.form-inline action="/add_associate" method="POST"
+  select name="room[id]"
+    - for x in @rooms
+      option value=x.id = x.room_id
+  select name="feed[id]"
+    - for x in @feeds
+      option value=x.id = "#{x.name} : #{x.url}"
+  input.input-small.btn type="submit"
+
+hr
+
+table.table.table-bordered.table-condensed.rooms
+  thead
+    tr
+      th RoomID
+      th FeedName
+      th URL
+  tbody
+    - for x in @connections
+      tr
+        td.room_id = x.room.id
+        td.name = x.feed.name
+        td.url = x.feed.url
+

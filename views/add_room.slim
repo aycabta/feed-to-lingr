@@ -1,0 +1,18 @@
+form.form-inline action="/add_room" method="POST"
+  input.input-small type="text" name="room_id" placeholder="room ID"
+  input.input-small.btn type="submit"
+
+hr
+
+table.table.table-bordered.table-condensed.rooms
+  thead
+    tr
+      th ID
+      th RoomID
+  tbody
+    - if Object.const_defined?(:Room)
+      - for x in @rooms
+        tr
+          td.id = x.id
+          td.room_id = x.room_id
+

@@ -1,0 +1,21 @@
+form.form-inline action="/add_feed" method="POST"
+  input.input-small type="text" name="name" placeholder="feed name"
+  input.input-small type="text" name="url" placeholder="URL"
+  input.input-small.btn type="submit"
+
+hr
+
+table.table.table-bordered.table-condensed.rooms
+  thead
+    tr
+      th ID
+      th FeedName
+      th URL
+  tbody
+    - if Object.const_defined?(:Feed)
+      - for x in @feeds
+        tr
+          td.id = x.id
+          td.name = x.name
+          td.url = x.url
+
