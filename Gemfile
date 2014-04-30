@@ -5,6 +5,7 @@ gem 'feedjira'
 gem 'dm-core'
 gem 'dm-migrations'
 gem 'slim'
+gem 'whenever'
 
 group :development, :test do
   gem 'rspec'
