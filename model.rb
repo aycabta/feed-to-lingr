@@ -32,7 +32,7 @@ class Feed
         feedjira = Feedjira::Feed.fetch_and_parse feed.url
       rescue Exception
       end
-      if feedjira.nil? or feedjira.entries.nil?
+      if feedjira.nil? or (not feedjira.kind_of? Feedjira::FeedUtilities) or feedjira.entries.nil?
         next
       end
       feedjira.entries.each do |entry|
