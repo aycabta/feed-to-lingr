@@ -5,6 +5,7 @@ require 'feedjira'
 require 'digest/sha1'
 require 'net/http'
 require 'uri'
+require 'erb'
 
 class Room
   include DataMapper::Resource
@@ -41,7 +42,7 @@ class Feed
             feed.connections.each do |connection|
               room = connection.room
               text = "#{feed.name}: #{entry.title}\n#{entry.url}"
-              request_url = "http://lingr.com/api/room/say?room=#{URI.encode(room.room_id)}&bot=#{URI.encode(ENV["BOT_ID"])}&text=#{URI.encode(text)}&bot_verifier=#{URI.encode(Digest::SHA1.hexdigest(ENV["BOT_ID"] + ENV["BOT_SECRET"]))}"
+              request_url = "http://lingr.com/api/room/say?room=#{ERB::Util.url_encode(room.room_id)}&bot=#{ERB::Util.url_encode(ENV["BOT_ID"])}&text=#{ERB::Util.url_encode(text)}&bot_verifier=#{ERB::Util.url_encode(Digest::SHA1.hexdigest(ENV["BOT_ID"] + ENV["BOT_SECRET"]))}"
               uri = URI.parse(request_url)
               response = Net::HTTP.get_response(uri)
             end
