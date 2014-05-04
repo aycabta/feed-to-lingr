@@ -14,7 +14,12 @@ configure :test, :development do
 end
 
 get '/end_of_the_point' do
-  ''
+  "\n"
+end
+
+get '/crawl' do
+  Feed.crawl
+  "\n"
 end
 
 get '/' do
