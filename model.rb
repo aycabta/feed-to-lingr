@@ -27,17 +27,27 @@ class Feed
 
   def self.crawl
     all.each do |feed|
-      feedjira = Feedjira::Feed.fetch_and_parse feed.url
-      title = feedjira.entries.first.title
-      url = feedjira.entries.first.url
-      published = feedjira.entries.first.published
-      if Entry.first({:url => url, :published => published}).nil?
-        entry = Entry.create(:title => title, :url => url, :published => published, :feed => feed)
-        feed.connections.each do |connection, room = connection.room|
-        text = "#{title}\n#{url}"
-        request_url = "http://lingr.com/api/room/say?room=#{URI.encode(room.room_id)}&bot=#{URI.encode(ENV["BOT_ID"])}&text=#{URI.encode(text)}&bot_verifier=#{URI.encode(Digest::SHA1.hexdigest(ENV["BOT_ID"] + ENV["BOT_SECRET"]))}"
-        uri = URI.parse(request_url)
-        response = Net::HTTP.get_response(uri)
+      begin
+        feedjira = Feedjira::Feed.fetch_and_parse feed.url
+      rescue Exception
+      end
+      if feedjira.nil? and feedjira.entries.nil?
+        next
+      end
+      feedjira.entries.each do |entry|
+        begin
+          if Entry.first({:url => entry.url, :published => entry.published}).nil?
+            entry = Entry.new(:title => entry.title, :url => entry.url, :published => entry.published, :feed => feed)
+            feed.connections.each do |connection|
+              room = connection.room
+              text = "#{entry.title}\n#{entry.url}"
+              request_url = "http://lingr.com/api/room/say?room=#{URI.encode(room.room_id)}&bot=#{URI.encode(ENV["BOT_ID"])}&text=#{URI.encode(text)}&bot_verifier=#{URI.encode(Digest::SHA1.hexdigest(ENV["BOT_ID"] + ENV["BOT_SECRET"]))}"
+              uri = URI.parse(request_url)
+              response = Net::HTTP.get_response(uri)
+            end
+            entry.save!
+          end
+        rescue Exception
         end
       end
     end
