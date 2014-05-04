@@ -2,7 +2,6 @@ require 'bundler'
 require 'sinatra'
 require 'slim'
 require './model'
-require 'digest/sha1'
 
 configure :production do
   DataMapper.setup(:default, ENV["DATABASE_URL"])
