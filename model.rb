@@ -11,7 +11,6 @@ class Room
   include DataMapper::Resource
   property :id, Serial
   property :room_id, String, :length => 256, :required => true
-  #has n, :feeds, :through => Resource
   has n, :connections
   has n, :feeds, :through => :connections
 end
@@ -21,7 +20,6 @@ class Feed
   property :id, Serial
   property :name, String, :length => 256, :required => true
   property :url, String, :length => 256, :required => true
-  #has n, :rooms, :through => Resource
   has n, :connections
   has n, :rooms, :through => :connections
   has n, :entries
