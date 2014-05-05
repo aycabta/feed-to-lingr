@@ -30,7 +30,11 @@ class Feed
     all.each do |feed|
       begin
         feedjira = Feedjira::Feed.fetch_and_parse feed.url
-      rescue Exception
+      rescue Exception => e
+        puts "#{e.class.name}: #{e.message}"
+        e.backtrace.each do |b|
+          puts "\t from #{b}"
+        end
       end
       if feedjira.nil? or (not feedjira.kind_of? Feedjira::FeedUtilities) or feedjira.entries.nil?
         next
@@ -48,7 +52,11 @@ class Feed
             end
             entry.save!
           end
-        rescue Exception
+        rescue Exception => e
+          puts "#{e.class.name}: #{e.message}"
+          e.backtrace.each do |b|
+            puts "\t from #{b}"
+          end
         end
       end
     end
