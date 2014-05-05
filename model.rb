@@ -39,7 +39,7 @@ class Feed
       end
       feedjira.entries.sort{ |a, b| a.published <=> b.published }.each do |entry|
         begin
-          if Entry.first({:url => entry.url, :published => entry.published}).nil?
+          if Entry.first({:feed_id => feed.id, :published => entry.published}).nil?
             entry = Entry.new(:title => entry.title, :url => entry.url, :published => entry.published, :feed => feed)
             feed.connections.each do |connection|
               room = connection.room
@@ -70,8 +70,8 @@ end
 class Entry
   include DataMapper::Resource
   property :id, Serial
-  property :url, String, :length => 256, :required => true
-  property :title, String, :length => 256, :required => true
+  property :url, String, :length => 256
+  property :title, String, :length => 256
   property :published, String, :length => 256, :required => true
   belongs_to :feed
 end
