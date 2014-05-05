@@ -35,7 +35,7 @@ class Feed
       if feedjira.nil? or (not feedjira.kind_of? Feedjira::FeedUtilities) or feedjira.entries.nil?
         next
       end
-      feedjira.entries.each do |entry|
+      feedjira.entries.sort{ |a, b| a.published <=> b.published }.each do |entry|
         begin
           if Entry.first({:url => entry.url, :published => entry.published}).nil?
             entry = Entry.new(:title => entry.title, :url => entry.url, :published => entry.published, :feed => feed)
