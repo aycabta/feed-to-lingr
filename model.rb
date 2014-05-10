@@ -40,7 +40,8 @@ class Feed
       feedjira.entries.sort{ |a, b| a.published <=> b.published }.each do |entry|
         begin
           if Entry.first({:feed_id => feed.id, :published => entry.published}).nil?
-            entry = Entry.new(:title => entry.title, :url => entry.url, :published => entry.published, :feed => feed)
+            entry_to_store = Entry.new(:title => entry.title, :url => entry.url, :published => entry.published, :feed => feed)
+            entry_to_store.save!
             feed.connections.each do |connection|
               room = connection.room
               text = "#{feed.name}: #{entry.title}\n#{entry.url}"
@@ -48,7 +49,6 @@ class Feed
               uri = URI.parse(request_url)
               response = Net::HTTP.get_response(uri)
             end
-            entry.save!
           end
         rescue Exception => e
           puts "#{e.class.name}: #{e.message}"
