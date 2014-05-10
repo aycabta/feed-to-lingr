@@ -72,7 +72,7 @@ class Entry
   property :id, Serial
   property :url, String, :length => 2048
   property :title, String, :length => 2048
-  property :published, String, :length => 256, :required => true
+  property :published, DateTime, :required => true
   belongs_to :feed
 end
 
