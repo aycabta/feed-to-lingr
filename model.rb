@@ -18,8 +18,8 @@ end
 class Feed
   include DataMapper::Resource
   property :id, Serial
-  property :name, String, :length => 256, :required => true
-  property :url, String, :length => 256, :required => true
+  property :name, String, :length => 2048, :required => true
+  property :url, String, :length => 2048, :required => true
   has n, :connections
   has n, :rooms, :through => :connections
   has n, :entries
@@ -70,8 +70,8 @@ end
 class Entry
   include DataMapper::Resource
   property :id, Serial
-  property :url, String, :length => 256
-  property :title, String, :length => 256
+  property :url, String, :length => 2048
+  property :title, String, :length => 2048
   property :published, String, :length => 256, :required => true
   belongs_to :feed
 end
