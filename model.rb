@@ -51,6 +51,7 @@ class Feed
             end
           end
         rescue Exception => e
+          puts "#{feed.id} #{feed.name} #{feed.url}"
           puts "#{e.class.name}: #{e.message}"
           e.backtrace.each do |b|
             puts "\t from #{b}"
