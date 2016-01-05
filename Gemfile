@@ -14,7 +14,7 @@ group :development, :test do
 end
 
 group :production do
-  gem 'dm-mysql-adapter'
+  gem 'dm-postgres-adapter'
 end
 
 ruby "2.3.0"
