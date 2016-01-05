@@ -13,12 +13,12 @@ GEM
       dm-core (~> 1.2.0)
     dm-migrations (1.2.0)
       dm-core (~> 1.2.0)
-    dm-mysql-adapter (1.2.0)
+    dm-postgres-adapter (1.2.0)
       dm-do-adapter (~> 1.2.0)
-      do_mysql (~> 0.10.6)
+      do_postgres (~> 0.10.6)
     dm-yaml-adapter (1.2.0)
       dm-core (~> 1.2.0)
-    do_mysql (0.10.16)
+    do_postgres (0.10.16)
       data_objects (= 0.10.16)
     eventmachine (1.0.7)
     faraday (0.9.1)
@@ -75,7 +75,7 @@ PLATFORMS
 DEPENDENCIES
   dm-core
   dm-migrations
-  dm-mysql-adapter
+  dm-postgres-adapter
   dm-yaml-adapter
   feedjira
   rack-test
@@ -84,3 +84,6 @@ DEPENDENCIES
   slim
   thin
   tilt (~> 1.4.1)
+
+BUNDLED WITH
+   1.11.2
