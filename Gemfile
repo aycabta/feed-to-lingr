@@ -5,7 +5,7 @@ gem 'feedjira'
 gem 'dm-core'
 gem 'dm-migrations'
 gem 'slim'
-gem 'tilt', '~> 1.4.1'
+gem 'tilt'
 
 group :development, :test do
   gem 'rspec'
