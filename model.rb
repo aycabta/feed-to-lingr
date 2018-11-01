@@ -98,4 +98,3 @@ def database_upgrade!
   Connection.auto_upgrade!
   Entry.auto_upgrade!
 end
-

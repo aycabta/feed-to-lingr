@@ -7,4 +7,3 @@ This bot notifies new entries to Lingr chat.
 
 * BOT_ID
 * BOT_SECRET
-

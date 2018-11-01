@@ -60,4 +60,3 @@ post '/add_associate' do
   Connection.create(:room => room, :feed => feed)
   redirect '/add_associate', 302
 end
-
