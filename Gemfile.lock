@@ -23,8 +23,8 @@ GEM
     do_postgres (0.10.17)
       data_objects (= 0.10.17)
     eventmachine (1.2.7)
-    feedjira (3.0.0)
-      loofah (>= 2.2.1)
+    feedjira (3.1.0)
+      loofah (>= 2.3.1)
       sax-machine (>= 1.0)
     loofah (2.3.1)
       crass (~> 1.0.2)
@@ -88,4 +88,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
